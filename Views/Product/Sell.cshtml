@@ -1,0 +1,53 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Sell";
+}
+
+<div style="width:100%">
+    <form method="post">
+        <div class="border p-3 mt-4" style="float:left; position:relative; width:50%; height:450px">
+            <br />
+            <div class="mb-3">
+                <label asp-for="productName">Product Name</label>
+                <input asp-for="productName" disabled class="form-control">
+                <span asp-validation-for="productName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="productCategory">Product Category</label>
+                <input asp-for="productCategory" disabled class="form-control">
+                <span asp-validation-for="productCategory" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="productPrice">Product Price</label>
+                <input asp-for="productPrice" disabled class="form-control">
+                <span asp-validation-for="productPrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="productQuantity">Current Product Quantity</label>
+                <input asp-for="productQuantity" disabled class="form-control">
+                <span asp-validation-for="productQuantity" class="text-danger"></span>
+            </div>
+            <input asp-for="productId" type="hidden" />
+
+            </br>
+        </div>
+
+        <div class="border p-3 mt-4" style="float:right; position:relative; width: 50%; height:450px">
+            <br />
+            <div class="mb-3">
+                <label for="customerName">Customer Name</label>
+                <input type="text" id="customerName" name="customerName" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="contactNumber">Contact Number</label>
+                <input type="text" id="contactNumber" name="contactNumber" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" class="form-control">
+            </div>
+            <input type="submit" value="Sell" class="btn btn-primary" />
+            </br>
+        </div>
+    </form>
+</div>

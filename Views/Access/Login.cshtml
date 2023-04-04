@@ -1,0 +1,48 @@
+﻿@model storeManager.Models.Login;
+
+  @{
+    Layout = "~/Views/Shared/login_Layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <form asp-controller="Access" asp-action="Login" method="post" style="width:50%;margin: 0 auto; text-align: center;">
+            <div class="border p-3 mt-4">
+                <div class="row pb-2">
+                    <h2 class="text-primary">Please Login</h2>
+                </div>
+            <div class="mb-3">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="email" class="form-control">
+                <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            <div class="mb-3">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+
+            @if (ViewData["ValidateMessage"] != null)
+            {
+                <div class="text-danger">
+                    @ViewData["ValidateMessage"]
+                </div>
+            }
+            </div>
+    </form>
+</body>
+</html>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

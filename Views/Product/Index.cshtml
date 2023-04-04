@@ -1,0 +1,82 @@
+﻿
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    // Retrieve _db from the ViewBag
+    var _db = ViewBag.DbContext;
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2>Product List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Product" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>&nbsp;&nbsp;Add New Product
+            </a>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <form method="get" asp-controller="Product" asp-action="Search">
+        <input type="text" name="query" placeholder="Search products...">
+        <button type="submit" class="btn btn-secondary">Search</button>
+    </form>
+
+    <br />
+
+
+
+<table class="table table-bordered table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Product Price</th>
+            <th>Product Quantity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model){
+                if (obj.productQuantity <= 0)
+                {
+                    _db.Products.Remove(obj);
+                    _db.SaveChanges();
+                }
+            <tr>
+                <td style="width:40%">
+                    @obj.productName
+                </td>
+                <td style="width:10%">
+                    @obj.productCategory
+                </td>
+                <td style="width:10%">
+                    @obj.productPrice
+                </td>
+                <td style="width:10%">
+                    @obj.productQuantity
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Product" asp-action="Edit" asp-route-productid="@obj.productId"
+                           class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i> Edit</a>
+                            <a asp-controller="Product" asp-action="Delete" asp-route-prdid="@obj.productId"
+                           class="btn btn-danger mx-2"><i class="bi bi-trash"></i> Delete</a>
+                            <a asp-controller="Product" asp-action="Sell" asp-route-sellid="@obj.productId"
+                           class="btn btn-danger mx-2"><i class="bi bi-trash"></i> Sell</a>
+
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+</div>
